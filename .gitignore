@@ -1,0 +1,22 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# Docker
+.env
+**/Dockerfile
+**/docker-compose.yml
+
+# Others
+.idea/
+.vscode/
+.DS_Store
