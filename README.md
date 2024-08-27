@@ -1,4 +1,5 @@
 # stock-tracker
+```
 ├─ .github
 │  └─ workflows
 ├─ .gitignore
