@@ -17,7 +17,7 @@ public class StockService {
     @Autowired
     private StockRepository stockRepository;
 
-    private final String apiKey = "your_api_key";  // Replace with your Alpha Vantage API key
+    private final String apiKey = System.getenv("ALPHA_VANTAGE_API_KEY");  // Replace with your Alpha Vantage API key
     private final String apiUrl = "https://www.alphavantage.co/query";
 
     // Define the date-time format that matches the Alpha Vantage API response
