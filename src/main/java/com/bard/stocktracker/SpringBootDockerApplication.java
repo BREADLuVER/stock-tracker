@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @EntityScan("com.bard.stocktracker.model")
 public class SpringBootDockerApplication {
 
-    @RequestMapping("/")
-    public String home() {
-        return "Hello World!";
-    }
+    // @RequestMapping("/")
+    // public String home() {
+    //     return "Hello World!";
+    // }
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootDockerApplication.class, args);
