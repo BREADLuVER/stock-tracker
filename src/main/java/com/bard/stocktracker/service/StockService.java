@@ -9,7 +9,9 @@ import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class StockService {
@@ -23,15 +25,17 @@ public class StockService {
     // Define the date-time format that matches the Alpha Vantage API response
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    public void fetchAndSaveStockData(String symbol) {
+    public List<Stock> fetchAndSaveStockData(String symbol) {
         String url = apiUrl + "?function=TIME_SERIES_INTRADAY&symbol=" + symbol + "&interval=5min&apikey=" + apiKey;
-        
+
         RestTemplate restTemplate = new RestTemplate();
         String response = restTemplate.getForObject(url, String.class);
-        
+
         JSONObject jsonResponse = new JSONObject(response);
         JSONObject timeSeries = jsonResponse.getJSONObject("Time Series (5min)");
-        
+
+        List<Stock> stockList = new ArrayList<>();
+
         // Iterate through the keys (timestamps) in the JSON response
         Iterator<String> keys = timeSeries.keys();
         while (keys.hasNext()) {
@@ -47,7 +51,10 @@ public class StockService {
             stock.setPrice(price);
             stock.setTimestamp(timestamp);
 
-            stockRepository.save(stock);
+            stockRepository.save(stock);  // Save stock to the database
+            stockList.add(stock);  // Add stock to the list to be returned
         }
+
+        return stockList;  // Return the list of stock data
     }
 }

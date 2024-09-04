@@ -30,7 +30,7 @@ public class SpringBootDockerApplication {
 
     @RequestMapping("/")
     public void home(HttpServletResponse response) throws IOException { 
-        Resource resource = resourceLoader.getResource("classpath:/index.html");
+        Resource resource = resourceLoader.getResource("classpath:static/index.html");
         try (InputStream inputStream = resource.getInputStream()) {
             response.setContentType("text/html");
             inputStream.transferTo(response.getOutputStream());
