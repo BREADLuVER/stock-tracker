@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const API_KEY = process.env.alphavantage_api_key;
+
 export const fetchStockData = async (symbol) => {
   const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&outputsize=compact&apikey=${API_KEY}`;
   
