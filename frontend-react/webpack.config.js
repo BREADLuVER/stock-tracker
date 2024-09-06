@@ -10,6 +10,7 @@ const config = {
   },
   resolve: {
     extensions: ['*', '.mjs', '.js', '.json'],
+    mainFields: ['browser', 'module', 'main'], // Prefer ESM entry points
     fallback: {
       crypto: require.resolve('crypto-browserify'),
       stream: require.resolve('stream-browserify'),
@@ -36,7 +37,8 @@ const config = {
       {
         test: /\.mjs$/,
         include: /node_modules/,
-        type: 'javascript/auto'
+        type: 'javascript/auto',
+        use: []
       }
     ]
   },
